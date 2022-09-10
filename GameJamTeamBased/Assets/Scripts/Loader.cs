@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class Loader 
+public class Loader : MonoBehaviour
 {
-    public static void Load(Scene scene)
-    {   
-        SceneManager.LoadScene(scene.ToString());
+    //where I am 
+    //public string currentSceneName;
+    //where I wanna go 
+    public string transitionScene;
+
+    public void Load(string transitionScene)
+    {   //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(transitionScene);
 
     }
-    public enum Scene{
-        BedRoom,
-        Kitchen,
-
+    public void LoadSartScene()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

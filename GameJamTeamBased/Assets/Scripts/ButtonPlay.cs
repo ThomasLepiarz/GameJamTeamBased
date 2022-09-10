@@ -8,7 +8,9 @@ public class ButtonPlay : MonoBehaviour
     //Transfer to next scene in builder
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.Instance.ChangeState(GameManager.GameState.NewGame); 
+        Debug.Log("Clicked Start Button");
     }
 
     //Quit Game... duh
