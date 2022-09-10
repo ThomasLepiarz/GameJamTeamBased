@@ -12,6 +12,7 @@ public class Loader : MonoBehaviour
 
     public void Load(string transitionScene)
     {   //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("You changed Scene to:" + transitionScene);
         SceneManager.LoadScene(transitionScene);
 
     }
