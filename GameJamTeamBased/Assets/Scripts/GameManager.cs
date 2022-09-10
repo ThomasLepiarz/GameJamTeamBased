@@ -3,8 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance; 
+
+    private void Awake(){
+        Instance = this;
+
+    }
+    protected virtual void OnApplicationQuit() {
+        Instance = null;
+        Destroy(gameObject);
+    }
+
     //WILL MAYBE CHANGE
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
@@ -16,7 +27,7 @@ public class GameManager : Singleton<GameManager>
     
 
    public void ChangeState(GameState newState){
-   
+   Debug.Log("This is the GameState: " + State);
     // prevents duplicate state changes;
     if (State == newState) return;
     // the T? syntactic means Nullable<T> which allows T to be null
@@ -27,6 +38,9 @@ public class GameManager : Singleton<GameManager>
     {
         case GameState.Starting:
             HandleStarting();
+            break;
+        case GameState.NewGame:
+            HandleNewGame();
             break;
         case GameState.ChangeRoom:
             HandleChangeRoom();
@@ -49,7 +63,11 @@ public class GameManager : Singleton<GameManager>
    }
 
 private void HandleStarting() {
-    UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+}
+
+private void HandleNewGame() {
+    Debug.Log("loading BedRoom");
+    UnityEngine.SceneManagement.SceneManager.LoadScene("BedRoom");
 }
 private void HandleChangeRoom() {
 
@@ -70,10 +88,11 @@ private void HandleNextDay(){
 
 public enum GameState {
     Starting = 0,
-    ChangeRoom = 1,
-    LifeEvent = 2,
-    BadEnding = 3,
-    NextDay = 4,
-    GoodEnding = 5,
+    NewGame = 1,
+    ChangeRoom = 2,
+    LifeEvent = 3,
+    BadEnding = 4,
+    NextDay = 5,
+    GoodEnding = 6,
 }
 }
