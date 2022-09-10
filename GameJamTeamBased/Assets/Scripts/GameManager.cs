@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
    }
 
 private void HandleStarting() {
-    
+    UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 }
 private void HandleChangeRoom() {
 
