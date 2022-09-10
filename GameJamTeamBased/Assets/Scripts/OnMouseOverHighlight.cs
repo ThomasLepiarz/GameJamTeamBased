@@ -23,6 +23,7 @@ public class OnMouseOverHighlight : MonoBehaviour
         isHighlighted = false;
     }
 
+    //ändert bool value nach Mauspositionsabfrage (erster Frame wo Maus Collider berührt)
     void OnMouseOver()
     {
         isHighlighted = true;
