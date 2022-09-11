@@ -7,10 +7,21 @@ using TMPro;
 public class ToDoListController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI myTextElement;
-    private int taskFinished;
+    public int taskFinished;
     private int currentTask;
 
     private void Update() {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (taskFinished == currentTask){
+            Debug.Log("Clicked on Object");
+            TaskDone(taskFinished);
+            }
+            // else
+            // {
+            
+            // }
+        }
         currentTask = GameManager.Instance.currentTask;
         Debug.Log(currentTask);
         switch (currentTask)
@@ -22,15 +33,12 @@ public class ToDoListController : MonoBehaviour
             myTextElement.text = "Arbeit";
             break;
         case 3:
-            myTextElement.text = "Fernseh";
+            myTextElement.text = "Waschen";
             break;
         case 4:
-            myTextElement.text = "Duschen";
-            break;
-        case 5:
             myTextElement.text = "Schlafen";
             break;
-        case 6:
+        case 5:
             GameManager.Instance.ChangeState(GameManager.GameState.NextDay);
             break;
         case 0:
