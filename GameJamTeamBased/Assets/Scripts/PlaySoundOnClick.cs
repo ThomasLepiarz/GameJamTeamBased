@@ -6,7 +6,7 @@ public class PlaySoundOnClick : MonoBehaviour
 {
     public AudioSource soundPlayer;
      
-    void Update()
+    void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
