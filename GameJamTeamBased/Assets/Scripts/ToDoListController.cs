@@ -9,10 +9,14 @@ public class ToDoListController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI myTextElement;
     public int taskFinished;
     private int currentTask;
+    private int currentDay;
 
     private void Update() {
 
         currentTask = GameManager.Instance.currentTask;
+        currentDay = GameManager.Instance.dayCount;
+        if (currentDay != 2)    
+        {
         Debug.Log(currentTask);
         switch (currentTask)
     {
@@ -36,6 +40,7 @@ public class ToDoListController : MonoBehaviour
         default:
             throw new ArgumentOutOfRangeException(nameof(currentTask), currentTask, null);
     }
+        }
     }
      void OnMouseOver()
     {
