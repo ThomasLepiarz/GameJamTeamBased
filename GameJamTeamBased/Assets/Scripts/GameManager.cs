@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; 
+    public static GameManager Instance;
+    public int currentTask;
+    
 
-    private void Awake(){
+    private void Awake()
+    {
+        if (GameManager.Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
-
-    }
-    protected virtual void OnApplicationQuit() {
-        Instance = null;
-        Destroy(gameObject);
+        //SceneManager.sceneLoaded += LoadState;
+        DontDestroyOnLoad(gameObject);
+        //if(PauseMenu.isPaused)
     }
 
     //WILL MAYBE CHANGE
@@ -63,11 +71,14 @@ public class GameManager : MonoBehaviour
    }
 
 private void HandleStarting() {
+    // GameObject.Find("Canvas").transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+   
 }
 
 private void HandleNewGame() {
     Debug.Log("loading BedRoom");
     UnityEngine.SceneManagement.SceneManager.LoadScene("BedRoom");
+    currentTask = 1;
 }
 private void HandleChangeRoom() {
 
@@ -76,6 +87,10 @@ private void HandleChangeRoom() {
 private void HandleLifeEvent(){
  // Add a Life Event
 }
+
+// [SerializeField] public TextMeshProUGUI myKaffe; 
+// [SerializeField] public TextMeshProUGUI myArbeit; 
+// [SerializeField] public TextMeshProUGUI myEssen; 
 
 private void HandleBadEnding(){
 
