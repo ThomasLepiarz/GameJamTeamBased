@@ -19,9 +19,17 @@ public class ButtonPlay : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+    
     public void Credits()
     {
         GameManager.Instance.levelChanger.FadeToLevel("Credits");
-        Debug.Log("Clicked Start Button");
+        Debug.Log("Clicked Credits Button");
     }
+
+    public void MainMenu()
+    {
+        GameManager.Instance.levelChanger.FadeToLevel("MainMenu");
+        Debug.Log("Clicked Back Button");
+    }
+
 }
