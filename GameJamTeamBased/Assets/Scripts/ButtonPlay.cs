@@ -19,7 +19,7 @@ public class ButtonPlay : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
-    
+
     public void Credits()
     {
         GameManager.Instance.levelChanger.FadeToLevel("Credits");
@@ -30,6 +30,10 @@ public class ButtonPlay : MonoBehaviour
     {
         GameManager.Instance.levelChanger.FadeToLevel("MainMenu");
         Debug.Log("Clicked Back Button");
+    }
+    public void QuitSnake()
+    {
+        GameManager.Instance.levelChanger.FadeToLevel("BedRoom");
     }
 
 }
