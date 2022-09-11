@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public int currentTask;
     public LevelChanger levelChanger;
-    private int dayCount;
-    private bool goodEnding = false;
+    public int dayCount;
     
 
     private void Awake()
