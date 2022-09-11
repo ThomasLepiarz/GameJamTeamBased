@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; 
+    public static GameManager Instance;
     public int currentTask;
     
 
@@ -88,9 +88,9 @@ private void HandleLifeEvent(){
  // Add a Life Event
 }
 
-[SerializeField] public TextMeshProUGUI myKaffe; 
-[SerializeField] public TextMeshProUGUI myArbeit; 
-[SerializeField] public TextMeshProUGUI myEssen; 
+// [SerializeField] public TextMeshProUGUI myKaffe; 
+// [SerializeField] public TextMeshProUGUI myArbeit; 
+// [SerializeField] public TextMeshProUGUI myEssen; 
 
 private void HandleBadEnding(){
 
