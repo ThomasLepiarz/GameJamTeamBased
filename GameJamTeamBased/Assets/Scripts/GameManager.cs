@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int currentTask;
+    public LevelChanger levelChanger;
     
 
     private void Awake()
@@ -74,10 +75,16 @@ private void HandleStarting() {
     // GameObject.Find("Canvas").transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
    
 }
+// void Update (){
+//     if(Input.GetMouseButtonDown(0))
+//     {
+//         FadeToLevel();
+//     }
+// }
 
 private void HandleNewGame() {
     Debug.Log("loading BedRoom");
-    UnityEngine.SceneManagement.SceneManager.LoadScene("BedRoom");
+    levelChanger.FadeToLevel("BedRoom");
     currentTask = 1;
 }
 private void HandleChangeRoom() {
