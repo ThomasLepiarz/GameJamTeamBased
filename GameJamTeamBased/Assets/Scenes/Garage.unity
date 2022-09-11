@@ -583,27 +583,37 @@ PrefabInstance:
     - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879669712901850663, guid: 85ac39a9ccb0c474689f1db1321d54ac,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5879669713178571440, guid: 85ac39a9ccb0c474689f1db1321d54ac,
         type: 3}
