@@ -293,12 +293,12 @@ PrefabInstance:
     - target: {fileID: 4210477450906277978, guid: 7d86984ab83c3ca4491f533ff0a9edc9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 4210477450906277978, guid: 7d86984ab83c3ca4491f533ff0a9edc9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 4210477450906277978, guid: 7d86984ab83c3ca4491f533ff0a9edc9,
         type: 3}
@@ -429,7 +429,6 @@ GameObject:
   - component: {fileID: 1311123316}
   - component: {fileID: 1311123315}
   - component: {fileID: 1311123314}
-  - component: {fileID: 1311123317}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -616,8 +615,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.299988, y: -198}
-  m_SizeDelta: {x: 782.8384, y: 64.10428}
+  m_AnchoredPosition: {x: 3.0341, y: -491.1}
+  m_SizeDelta: {x: 1926.0681, y: 196.38858}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900209826
 MonoBehaviour:
@@ -851,6 +850,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852627389542392442, guid: 768bd884d52e7014e93beeaf1e23f0a9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 406
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852627389542392442, guid: 768bd884d52e7014e93beeaf1e23f0a9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -758
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 768bd884d52e7014e93beeaf1e23f0a9, type: 3}
