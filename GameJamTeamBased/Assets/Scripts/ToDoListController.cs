@@ -7,7 +7,6 @@ using TMPro;
 public class ToDoListController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI myTextElement;
-    [SerializeField] private int taskNumber;
     private int taskFinished;
     private int currentTask;
 
@@ -17,43 +16,38 @@ public class ToDoListController : MonoBehaviour
         switch (currentTask)
     {
         case 1:
-            myTextElement = GameManager.Instance.myKaffe;
+            myTextElement.text = "Kaffee";
             break;
         case 2:
-            myTextElement = GameManager.Instance.myArbeit;
+            myTextElement.text = "Arbeit";
             break;
         case 3:
-            myTextElement = GameManager.Instance.myEssen;
+            myTextElement.text = "Essen";
             break;
         case 0:
         break;
         default:
-            throw new ArgumentOutOfRangeException(nameof(taskNumber), taskNumber, null);
+            throw new ArgumentOutOfRangeException(nameof(currentTask), currentTask, null);
     }
     }
     
     public void TaskDone(int taskFinished)
     {
-        if (taskFinished == taskNumber)
-        {
-        myTextElement.fontStyle = FontStyles.Strikethrough;
-        
-        switch (taskNumber)
+        if (taskFinished == currentTask)
+        {       
+        switch (currentTask)
     {
         case 1:
-            GameManager.Instance.myKaffe = myTextElement;
             GameManager.Instance.currentTask += 1;
             break;
         case 2:
-            GameManager.Instance.myArbeit = myTextElement;
              GameManager.Instance.currentTask += 1;
             break;
         case 3:
-            GameManager.Instance.myEssen = myTextElement;
             GameManager.Instance.currentTask += 1;
             break;
         default:
-            throw new ArgumentOutOfRangeException(nameof(taskNumber), taskNumber, null);
+            throw new ArgumentOutOfRangeException(nameof(currentTask), currentTask, null);
     }
         }
 
