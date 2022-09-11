@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GoodEnding.unity
     guid: c996c390434fd6841b33597a106d7083
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 8a649285af96fad4bb7cb231198c54f7
   m_configObjects: {}
