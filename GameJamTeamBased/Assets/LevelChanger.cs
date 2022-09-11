@@ -15,8 +15,11 @@ public class LevelChanger : MonoBehaviour
         animator.SetTrigger("FadeOut");
     }
     public void OnFadeComplete()
-    {
+    {   Debug.Log(" About to load the new scene");
         SceneManager.LoadScene(levelToLoad);
+        animator.SetTrigger("FadeIN");
+        Debug.Log(" Scene should be loaded");
+        
     }
 }
 

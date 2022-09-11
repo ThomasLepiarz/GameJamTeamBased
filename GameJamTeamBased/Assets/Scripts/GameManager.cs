@@ -104,6 +104,8 @@ private void HandleBadEnding(){
     
 }
 private void HandleNextDay(){
+    Instance.ChangeState(GameManager.GameState.NewGame);
+    //Save progress
 
 }
 

@@ -30,8 +30,11 @@ public class ToDoListController : MonoBehaviour
         case 5:
             myTextElement.text = "Schlafen";
             break;
+        case 6:
+            GameManager.Instance.ChangeState(GameManager.GameState.NextDay);
+            break;
         case 0:
-        break;
+            break;
         default:
             throw new ArgumentOutOfRangeException(nameof(currentTask), currentTask, null);
     }
