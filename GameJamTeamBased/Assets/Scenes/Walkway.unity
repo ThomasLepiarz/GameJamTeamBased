@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 1560743495}
   - component: {fileID: 1560743494}
   m_Layer: 0
-  m_Name: Flur
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1156,7 +1156,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c398a2aa193fccb4ca8481aaf99a34ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b0f8aaf4aba68243be523ce1dc7e18a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1175,8 +1175,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560743493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.016, y: 0.018, z: 0}
-  m_LocalScale: {x: 0.6024519, y: 0.60316855, z: 1}
+  m_LocalPosition: {x: -0.0006, y: 0.0002, z: 0}
+  m_LocalScale: {x: 0.547339, y: 0.43548942, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
