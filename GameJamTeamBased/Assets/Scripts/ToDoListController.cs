@@ -11,17 +11,7 @@ public class ToDoListController : MonoBehaviour
     private int currentTask;
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (taskFinished == currentTask){
-            Debug.Log("Clicked on Object");
-            TaskDone(taskFinished);
-            }
-            // else
-            // {
-            
-            // }
-        }
+
         currentTask = GameManager.Instance.currentTask;
         Debug.Log(currentTask);
         switch (currentTask)
@@ -47,7 +37,16 @@ public class ToDoListController : MonoBehaviour
             throw new ArgumentOutOfRangeException(nameof(currentTask), currentTask, null);
     }
     }
-    
+     void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+             if (taskFinished == currentTask){
+            Debug.Log("Clicked on Object");
+            TaskDone(taskFinished);
+        }
+    }
+    }
     
     public void TaskDone(int taskFinished)
     {
