@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1018590341}
   - component: {fileID: 1018590340}
   m_Layer: 0
-  m_Name: Kitchen2
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71cea5c35a53ab8439803be4865f7f33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f92cad49cb7eef44b8fbc9da36595504, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -196,8 +196,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018590339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0054, y: -0.0022, z: 0}
-  m_LocalScale: {x: 0.60043246, y: 0.6006485, z: 1}
+  m_LocalPosition: {x: 0.008, y: -0.0047, z: 0}
+  m_LocalScale: {x: 0.54768956, y: 0.43588176, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
