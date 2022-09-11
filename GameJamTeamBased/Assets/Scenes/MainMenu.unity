@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda5422c3c7bcbc4e864531d0db3cd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTask: 0
 --- !u!4 &1067679685
 Transform:
   m_ObjectHideFlags: 0
@@ -460,7 +461,7 @@ GameObject:
   - component: {fileID: 1450706033}
   - component: {fileID: 1450706032}
   m_Layer: 5
-  m_Name: BGPlaceholder
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
