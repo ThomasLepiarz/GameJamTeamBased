@@ -44,16 +44,23 @@ public class ToDoListController : MonoBehaviour
              if (taskFinished == currentTask){
             Debug.Log("Clicked on Object");
             TaskDone(taskFinished);
+             }
+
+            else if (taskFinished == 7)
+        {   
+            GameManager.Instance.ChangeState(GameManager.GameState.GoodEnding);
+        }
         }
     }
-    }
+    
     
     public void TaskDone(int taskFinished)
     {
         if (taskFinished == currentTask)
         {       
             GameManager.Instance.currentTask += 1;
-         }
+        }
+        
         }
 
     }

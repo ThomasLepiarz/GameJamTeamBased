@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public int currentTask;
     public LevelChanger levelChanger;
+    private int dayCount;
+    private bool goodEnding = false;
     
 
     private void Awake()
@@ -54,8 +56,8 @@ public class GameManager : MonoBehaviour
         case GameState.ChangeRoom:
             HandleChangeRoom();
             break;
-        case GameState.LifeEvent:
-            HandleLifeEvent();
+        case GameState.GoodEnding:
+            HandleGoodEnding();
             break;
         case GameState.BadEnding:
             HandleBadEnding();
@@ -91,22 +93,33 @@ private void HandleChangeRoom() {
 
 
 }
-private void HandleLifeEvent(){
- // Add a Life Event
+private void HandleGoodEnding(){
+    levelChanger.FadeToLevel("GoodEnding");
 }
 
 // [SerializeField] public TextMeshProUGUI myKaffe; 
 // [SerializeField] public TextMeshProUGUI myArbeit; 
 // [SerializeField] public TextMeshProUGUI myEssen; 
-
-private void HandleBadEnding(){
-
-    
-}
 private void HandleNextDay(){
+    dayCount += 1;
+    Debug.Log("THIS IS THE CURRENT DAY: " + dayCount);
+    if (dayCount == 2)
+    {
+        Instance.ChangeState(GameManager.GameState.BadEnding);
+    }
+    else    
+    {
     Instance.ChangeState(GameManager.GameState.NewGame);
+    }
+
     //Save progress
 
+}
+
+private void HandleBadEnding()
+{
+    Debug.Log("loading Bad Ending");
+    levelChanger.FadeToLevel("BadEnding");
 }
 
 

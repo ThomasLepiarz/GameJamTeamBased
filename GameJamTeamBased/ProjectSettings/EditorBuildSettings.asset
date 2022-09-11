@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bathroom.unity
     guid: 5a916ca4108035446b950daae184e7eb
+  - enabled: 1
+    path: Assets/Scenes/BadEnding.unity
+    guid: 3381d85534f299a43aa70122caae1385
+  - enabled: 1
+    path: Assets/Scenes/GoodEnding.unity
+    guid: c996c390434fd6841b33597a106d7083
   m_configObjects: {}
