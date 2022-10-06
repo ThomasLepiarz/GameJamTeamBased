@@ -43,6 +43,5 @@ namespace Enums
         GoodEnding,
         Snake,
     }
-
     #endregion
 }

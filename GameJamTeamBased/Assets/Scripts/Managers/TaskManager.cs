@@ -6,6 +6,7 @@ using System;
 using TMPro;
 
 using Enums;
+using Everyday;
 
 
 public class TaskManager : MonoBehaviour
@@ -41,7 +42,6 @@ public class TaskManager : MonoBehaviour
                     toDoTask.text = "Schlafen";
                     break;
                 case 5:
-                    GameManager.Instance.HandleNextDay();
                     break;
                 case 0:
                     break;
