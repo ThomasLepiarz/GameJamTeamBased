@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OnMouseOverHighlight : MonoBehaviour
+public class HighlightSprites : MonoBehaviour
 {
 
     private SpriteRenderer spriteR;
