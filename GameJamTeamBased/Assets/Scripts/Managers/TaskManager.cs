@@ -23,7 +23,7 @@ public class TaskManager : MonoBehaviour
 
     #region Private Functions
 
-    private void Update()
+    /*private void Update()
     {
         if (GameManager.Instance.DayCount != 2)
         {
@@ -74,7 +74,7 @@ public class TaskManager : MonoBehaviour
         {
             SceneManager.LoadScene(Scenes.GoodEnding.ToString());
         }
-    }
+    }*/
 
     #endregion
 }

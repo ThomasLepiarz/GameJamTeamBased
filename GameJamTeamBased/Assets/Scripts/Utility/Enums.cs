@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Enums
 {
-    #region Enumerators
-
     public enum GameState
     {
         Starting,
+        MainMenu,
+        Credits,
         NewGame,
         Hallway,
         BadEnding,
@@ -19,6 +19,7 @@ namespace Enums
         Garage,
         Bathroom,
         Bedroom,
+        Snake,
     }
 
     public enum Tasks
@@ -29,19 +30,11 @@ namespace Enums
         Sleep = 4,
     }
 
-    public enum Scenes
+    public enum TransitionPosition
     {
-        MainMenu,
-        Credits,
-        Bedroom,
-        Hall,
-        Livingroom,
-        Kitchen,
-        Bathroom,
-        Garage,
-        BadEnding,
-        GoodEnding,
-        Snake,
+        Left,
+        Right,
+        Bottom,
+        Top,
     }
-    #endregion
 }

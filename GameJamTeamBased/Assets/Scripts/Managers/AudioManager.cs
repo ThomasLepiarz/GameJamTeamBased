@@ -7,20 +7,31 @@ public class AudioManager : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private AudioSource _backgroundMusicDayOne;
     [SerializeField] private AudioSource _menuMusic;
+    [SerializeField] private AudioSource _backgroundMusicDayOne;
     [SerializeField] private AudioSource _correctTask;
     [SerializeField] private AudioSource _wrongTask;
 
     private bool _menuMusicIsOn;
     //private bool _backgroundMusicDayOneIsOn;
+
+    private bool _backgroundMusicIsOn;
+
+    public bool BackGroundMusicIsOn
+    {
+        get { return _backgroundMusicIsOn; }
+        private set => _backgroundMusicIsOn = value;
+    }
+
+
+
     #endregion
 
     #region Public Functions
 
     //starts Roomscenes background music on day 1
     //also ends the menu music 
-    public void playBackgroundMusicDayOne()
+    public void PlayBackgroundMusicDayOne()
     {
         if (_menuMusicIsOn)
         {
@@ -29,31 +40,50 @@ public class AudioManager : MonoBehaviour
             _menuMusicIsOn = false;
         }
         _backgroundMusicDayOne.Play();
-        //_backgroundMusicDayOneIsOn = true;
+        _backgroundMusicIsOn = true;
     }
 
     //plays menu music
-    public void playMenuMusic()
+    public void PlayMenuMusic()
     {
         Debug.Log("Playing Menu Music");
         _menuMusic.Play();
         _menuMusicIsOn = true;
     }
 
-    public void playCorrectTaskSound()
+    public void PlayCorrectTaskSound()
     {
         _correctTask.Play();
     }
 
-    public void playWrongTaskSound()
+    public void PlayWrongTaskSound()
     {
         _wrongTask.Play();
     }
 
     //plays and audiosource of a gameobject (use getcomponent?)
-    public void playAudioSource(AudioSource audioSource)
+    public void PlayAudioSource(AudioSource audioSource)
     {
         audioSource.Play();
+    }
+
+    public void StopAllMusic()
+    {
+        _backgroundMusicDayOne.Stop();
+        _menuMusic.Stop();
+        _backgroundMusicIsOn = false;
+    }
+
+    public void PauseBackgroundMusic()
+    {
+        _backgroundMusicDayOne.Pause();
+        _backgroundMusicIsOn = false;
+    }
+
+    public void UnPauseBackgroundMusic()
+    {
+        _backgroundMusicDayOne.UnPause();
+        _backgroundMusicIsOn = true;
     }
     #endregion
 }
