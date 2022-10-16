@@ -9,6 +9,7 @@ using TMPro;
 
 
 using Enums;
+using Snake;
 using Unity.VisualScripting;
 
 namespace Everyday
@@ -170,7 +171,16 @@ namespace Everyday
                 
                 //goes to snake from "Snake Button"
                 case GameState.Snake:
-
+                    Instance.MenuCanvas.SetActive(false);
+                    Instance.CreditsCanvas.SetActive(false);
+                    Instance.BedroomCanvas.SetActive(false);
+                    Instance.HallCanvas.SetActive(false);
+                    Instance.LivingRoomCanvas.SetActive(false);
+                    Instance.KitchenCanvas.SetActive(false);
+                    Instance.GarageCanvas.SetActive(false);
+                    Instance.GoodEndingCanvas.SetActive(false);
+                    Instance.BadEndingCanvas.SetActive(false);
+                    Instance.BathroomCanvas.SetActive(false);
                     break;
 
                 default:
