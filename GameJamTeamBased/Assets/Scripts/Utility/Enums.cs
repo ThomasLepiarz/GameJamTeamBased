@@ -22,12 +22,12 @@ namespace Enums
         Snake,
     }
 
-    public enum Tasks
+    public enum Task
     {
-        Coffee = 1,
-        Work = 2,
-        Shower = 3,
-        Sleep = 4,
+        Kaffee = 1,
+        Arbeiten = 2,
+        Waschen = 3,
+        Schlafen = 4,
     }
 
     public enum TransitionPosition

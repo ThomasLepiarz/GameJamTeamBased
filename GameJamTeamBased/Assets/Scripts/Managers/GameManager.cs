@@ -35,8 +35,6 @@ namespace Everyday
         public GameObject BadEndingCanvas;
         public GameObject GoodEndingCanvas;
 
-
-
         #endregion
 
         #region Properties
@@ -112,7 +110,7 @@ namespace Everyday
                     _audioManager.PlayBackgroundMusicDayOne();
 
                     //sets the first Task to Coffee
-                    _currentTask = (int)Tasks.Coffee;
+                    _currentTask = (int)Task.Kaffee;
                     break;
 
                 //sends the player to the bedroom, when coming from the hallway
@@ -169,7 +167,7 @@ namespace Everyday
                 //handles the day changes
                 case GameState.NextDay:
                     _currentDay += 1;
-                    _currentTask = (int)Tasks.Coffee;
+                    _currentTask = (int)Task.Kaffee;
                     break;
 
                 //goes to good ending from "cycle"

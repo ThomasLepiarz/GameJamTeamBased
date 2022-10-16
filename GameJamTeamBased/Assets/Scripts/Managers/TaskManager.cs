@@ -7,74 +7,126 @@ using TMPro;
 
 using Enums;
 using Everyday;
-
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class TaskManager : MonoBehaviour
 {
+    //This script is part of the GameManager
+    //Manages Taskprogression, triggers-Task related voice lines and other Task functions
 
     #region Fields
 
-    [SerializeField] private TextMeshProUGUI toDoTask;
-    [SerializeField] private int clickedTask;
-    [SerializeField] private AudioSource wrongTask;
-    [SerializeField] private AudioSource correctTask;
+    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private Button TaskObject_One;
+    [SerializeField] private Button TaskObject_Two;
+    [SerializeField] private Button TaskObject_Three;
+    [SerializeField] private Button TaskObject_Four;
+
+    private int _clickedTask;
 
     #endregion
 
     #region Private Functions
 
-    /*private void Update()
+    //Makes unique onclick events for the interactable objects
+    //needs to be used to relate the task to the respective object
+    private void Start()
     {
-        if (GameManager.Instance.DayCount != 2)
+        if (TaskObject_One != null)
         {
-            switch (GameManager.Instance.CurrentTask)
-            {
-                case 1:
-                    toDoTask.text = "Kaffee";
-                    break;
-                case 2:
-                    toDoTask.text = "Arbeit";
-                    break;
-                case 3:
-                    toDoTask.text = "Waschen";
-                    break;
-                case 4:
-                    toDoTask.text = "Schlafen";
-                    break;
-                case 5:
-                    break;
-                case 0:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(GameManager.Instance.CurrentTask), GameManager.Instance.CurrentTask, null);
-            }
+            Button button1 = TaskObject_One.GetComponent<Button>();
+            button1.onClick.AddListener(TaskOnClickOne);
         }
+        
+        if (TaskObject_Two != null)
+        {
+            Button button2 = TaskObject_Two.GetComponent<Button>();
+            button2.onClick.AddListener(TaskOnClickTwo);
+        }
+        
+        if (TaskObject_Three != null)
+        {
+            Button button3 = TaskObject_Three.GetComponent<Button>();
+            button3.onClick.AddListener(TaskOnClickThree);
+        }
+
+        if (TaskObject_Four != null)
+        {
+            Button button4 = TaskObject_Four.GetComponent<Button>();
+            button4.onClick.AddListener(TaskOnClickFour);
+        }
+
+        Debug.Log(TaskObject_One);
+        Debug.Log(TaskObject_Two);
+        Debug.Log(TaskObject_Three);
+        Debug.Log(TaskObject_Four);
+
     }
 
-    //Switches to next task if correct task was done
-    private void OnMouseDown()
+    //sets the respective TaskNumber
+    private void TaskOnClickOne()
     {
+        _clickedTask = 1;
+        CheckTaskComplete();
+    }
+
+    private void TaskOnClickTwo()
+    {
+        _clickedTask = 2;
+        CheckTaskComplete();
+    }
+
+    private void TaskOnClickThree()
+    {
+        _clickedTask = 3;
+        CheckTaskComplete();
+    }
+
+    private void TaskOnClickFour()
+    {
+        _clickedTask = 4;
+
+        if (GameManager.Instance.DayCount > 2)
+        {
+            GameManager.Instance.SwitchState(GameState.BadEnding);
+        }
+        else if (_clickedTask == GameManager.Instance.CurrentTask)
+        {
+            GameManager.Instance.SwitchState(GameState.NextDay);
+        }
+        else
+        {
+            CheckTaskComplete();
+        }
+    }
+    #endregion
+
+    //Switches to next task if correct task was done
+    //also gives auditory feedback
+    private void CheckTaskComplete()
+    {
+        Debug.Log("CheckTaskComplete Called: ");
+
         //correct task?
-        if (clickedTask == GameManager.Instance.CurrentTask)
+        if (_clickedTask == GameManager.Instance.CurrentTask)
         {
             Debug.Log("Clicked on Object");
+            Debug.Log("Assigned Tasknumber of Object: " + _clickedTask);
+            Debug.Log("Before Update: " + GameManager.Instance.CurrentTask);
             GameManager.Instance.CurrentTask += 1;
+
+            Debug.Log("After Update: " + GameManager.Instance.CurrentTask);
             //success sound
-            correctTask.Play();
+            audioManager.PlayCorrectTaskSound();
         }
         //wrong task?
-        else if (clickedTask != GameManager.Instance.CurrentTask)
+        else if (_clickedTask != GameManager.Instance.CurrentTask)
         {
             Debug.Log("Clicked on wrong task!");
             //error sound
-            wrongTask.Play();
+            audioManager.PlayWrongTaskSound();
         }
-        //dafuq is this?
-        else if (clickedTask == 7)
-        {
-            SceneManager.LoadScene(Scenes.GoodEnding.ToString());
-        }
-    }*/
-
-    #endregion
+    }
 }
