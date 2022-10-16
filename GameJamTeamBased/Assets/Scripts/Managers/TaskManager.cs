@@ -58,11 +58,6 @@ public class TaskManager : MonoBehaviour
             button4.onClick.AddListener(TaskOnClickFour);
         }
 
-        Debug.Log(TaskObject_One);
-        Debug.Log(TaskObject_Two);
-        Debug.Log(TaskObject_Three);
-        Debug.Log(TaskObject_Four);
-
     }
 
     //sets the respective TaskNumber
@@ -88,7 +83,7 @@ public class TaskManager : MonoBehaviour
     {
         _clickedTask = 4;
 
-        if (GameManager.Instance.DayCount > 2)
+        if (GameManager.Instance.CurrentDay > 2)
         {
             GameManager.Instance.SwitchState(GameState.BadEnding);
         }

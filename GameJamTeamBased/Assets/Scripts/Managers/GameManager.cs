@@ -9,7 +9,7 @@ using TMPro;
 
 
 using Enums;
-
+using Unity.VisualScripting;
 
 namespace Everyday
 {
@@ -20,14 +20,12 @@ namespace Everyday
 
         public static GameManager Instance;
         private static AudioManager _audioManager;
-        private static TaskManager _taskManager;
         public LevelChanger levelChanger;
 
         public GameObject MenuCanvas;
         public GameObject CreditsCanvas;
         public GameObject BedroomCanvas;
         public GameObject HallCanvas;
-        public GameObject SnakeCanvas;
         public GameObject LivingRoomCanvas;
         public GameObject KitchenCanvas;
         public GameObject BathroomCanvas;
@@ -38,14 +36,6 @@ namespace Everyday
         #endregion
 
         #region Properties
-
-        private int _dayCount;
-
-        public int DayCount
-        {
-            get { return _dayCount; }
-            private set { _dayCount = value; }
-        }
 
         private int _currentDay;
 
@@ -84,8 +74,10 @@ namespace Everyday
                     Instance.HallCanvas.SetActive(false);
                     Instance.LivingRoomCanvas.SetActive(false);
                     Instance.KitchenCanvas.SetActive(false);
-                    Instance.SnakeCanvas.SetActive(false);
                     Instance.GarageCanvas.SetActive(false);
+                    Instance.GoodEndingCanvas.SetActive(false);
+                    Instance.BadEndingCanvas.SetActive(false);
+                    Instance.BathroomCanvas.SetActive(false);
                     _audioManager.PlayMenuMusic();
                     break;
 
@@ -178,8 +170,7 @@ namespace Everyday
                 
                 //goes to snake from "Snake Button"
                 case GameState.Snake:
-                    Instance.SnakeCanvas.SetActive(true);
-                    Instance.BedroomCanvas.SetActive(false);
+
                     break;
 
                 default:
@@ -282,24 +273,17 @@ namespace Everyday
             Instance.SwitchState(GameState.Starting);
         }
 
-        public void HandleDayChange()
+        private void Update()
         {
-            if (_currentDay == 2)
+        
+            if (Instance.BadEndingCanvas.activeInHierarchy || Instance.GoodEndingCanvas.activeInHierarchy)
             {
-                Instance.SwitchState(GameState.BadEnding);
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Debug.Log("Escape Pressed");
+                    Instance.SwitchState(GameState.Starting);
+                }
             }
-            else
-            {
-                Instance.SwitchState(GameState.NextDay);
-            }
-
-        }
-
-        //go to bad ending call
-        private void HandleBadEnding()
-        {
-            Debug.Log("loading Bad Ending");
-            levelChanger.FadeToLevel("BadEnding");
         }
 
         #endregion
