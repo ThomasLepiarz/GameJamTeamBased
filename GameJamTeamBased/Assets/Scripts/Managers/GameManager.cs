@@ -260,6 +260,12 @@ namespace Everyday
             SwitchState(GameState.Bedroom);
         }
 
+        public void GoToGoodEnding()
+        {
+            Instance.GarageCanvas.SetActive(false);
+            Instance.GoodEndingCanvas.SetActive(true);
+        }
+
         #endregion
         #endregion
 

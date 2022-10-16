@@ -25,6 +25,7 @@ namespace Snake
         public GameObject tailPrefab;
 
         private float _speed = 0.1f;
+        [SerializeField] private SpawnFood _food;
 
         AudioSource audioData;
 
@@ -91,7 +92,7 @@ namespace Snake
             {
                 // Get Longer in next Move call
                 ate = true;
-                _speed -= 0.005f;
+                _speed /= 1.1f;
                 CancelInvoke();
                 StartSnake();
 
@@ -104,6 +105,7 @@ namespace Snake
                 // ToDo You lose message and scene return
                 //Cancel all Invoke calls
                 CancelInvoke();
+                _food.GameRuns = false;
                 //audioData.Play(0);
             }
         }

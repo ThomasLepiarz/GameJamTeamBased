@@ -23,6 +23,12 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private Button TaskObject_Two;
     [SerializeField] private Button TaskObject_Three;
     [SerializeField] private Button TaskObject_Four;
+    [SerializeField] private AudioSource _workTaskFinished;
+    [SerializeField] private AudioSource _coffeeTaskFinished;
+    [SerializeField] private AudioSource _washTaskFinished;
+    [SerializeField] private AudioSource _workTaskFinishedPlayer;
+
+
 
     private int _clickedTask;
 
@@ -76,6 +82,8 @@ public class TaskManager : MonoBehaviour
     private void TaskOnClickThree()
     {
         _clickedTask = 3;
+        audioManager.PlayAudioSource(_workTaskFinished);
+        audioManager.PlayAudioSource(_workTaskFinishedPlayer);
         CheckTaskComplete();
     }
 
@@ -107,14 +115,35 @@ public class TaskManager : MonoBehaviour
         //correct task?
         if (_clickedTask == GameManager.Instance.CurrentTask)
         {
+            audioManager.PlayCorrectTaskSound();
+            switch (GameManager.Instance.CurrentTask)   
+            {
+                case 1:
+                    audioManager.PlayAudioSource(_coffeeTaskFinished);
+                    break;
+
+                case 2:
+                    audioManager.PlayAudioSource(_workTaskFinished);
+                    audioManager.PlayAudioSource(_workTaskFinishedPlayer);
+                    break;
+
+                case 3:
+                    audioManager.PlayAudioSource(_washTaskFinished);
+                    break;
+
+                case 4:
+                    break;
+
+                default:
+                    break;
+            }
+
             Debug.Log("Clicked on Object");
             Debug.Log("Assigned Tasknumber of Object: " + _clickedTask);
             Debug.Log("Before Update: " + GameManager.Instance.CurrentTask);
             GameManager.Instance.CurrentTask += 1;
 
-            Debug.Log("After Update: " + GameManager.Instance.CurrentTask);
-            //success sound
-            audioManager.PlayCorrectTaskSound();
+            Debug.Log("After Update: " + GameManager.Instance.CurrentTask);            
         }
         //wrong task?
         else if (_clickedTask != GameManager.Instance.CurrentTask)
