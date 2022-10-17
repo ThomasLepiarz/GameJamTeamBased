@@ -27,6 +27,7 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private AudioSource _coffeeTaskFinished;
     [SerializeField] private AudioSource _washTaskFinished;
     [SerializeField] private AudioSource _workTaskFinishedPlayer;
+    [SerializeField] private AudioSource _coffeeSip;
 
 
 
@@ -118,20 +119,21 @@ public class TaskManager : MonoBehaviour
             audioManager.PlayCorrectTaskSound();
             switch (GameManager.Instance.CurrentTask)   
             {
-                case 1:
+                case 1: //Coffee
+                    audioManager.PlayAudioSource(_coffeeSip);
                     audioManager.PlayAudioSource(_coffeeTaskFinished);
                     break;
 
-                case 2:
+                case 2: //work
                     audioManager.PlayAudioSource(_workTaskFinished);
                     audioManager.PlayAudioSource(_workTaskFinishedPlayer);
                     break;
 
-                case 3:
+                case 3: //sink
                     audioManager.PlayAudioSource(_washTaskFinished);
                     break;
 
-                case 4:
+                case 4: //bed
                     break;
 
                 default:

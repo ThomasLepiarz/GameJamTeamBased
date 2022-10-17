@@ -34,6 +34,10 @@ namespace Everyday
         public GameObject BadEndingCanvas;
         public GameObject GoodEndingCanvas;
 
+        //bools to handle whether sounds have played already
+        private bool _nothingCoffee = false;
+        private bool _finallySomeQuiet = false;
+
         #endregion
 
         #region Properties
@@ -53,6 +57,11 @@ namespace Everyday
             get { return _currentTask; }
             set { _currentTask = value; }
         }
+
+        //becomes true if voice line was already played
+        //becomes false again for a new day
+        public bool CoffeeNarrator { get; set; }
+
 
         #endregion
 
@@ -101,6 +110,7 @@ namespace Everyday
 
                     //stops menu music (if on) and plays Day1 BG music
                     _audioManager.PlayBackgroundMusicDayOne();
+                    _audioManager.PlayCoffeeTaskLine();
 
                     //sets the first Task to Coffee
                     _currentTask = (int)Task.Kaffee;
@@ -117,17 +127,30 @@ namespace Everyday
                     Instance.BathroomCanvas.SetActive(true);
                     Instance.LivingRoomCanvas.SetActive(false);
                     _audioManager.PauseBackgroundMusic();
+                    _audioManager.PlayBathroomMusic();
+                    if (!_finallySomeQuiet)
+                    {
+                        _audioManager.PlayFinallySomeQuiet();
+                        _finallySomeQuiet = true;
+                    }
                     break;
                 
                 //goes to kitchen from either 
                 case GameState.Kitchen:
                     if (!_audioManager.BackGroundMusicIsOn)
                     {
+                        _audioManager.StopBathroomMusic();
                         _audioManager.UnPauseBackgroundMusic();
                     }
                     Instance.LivingRoomCanvas.SetActive(false);
                     Instance.KitchenCanvas.SetActive(true);
                     Instance.BathroomCanvas.SetActive(false);
+
+                    if (!_nothingCoffee)
+                    {
+                        _audioManager.PlayNothingWithoutCoffee();
+                        _nothingCoffee = true;
+                    }
                     break;
 
                 //goes to living room from both directions
@@ -141,10 +164,18 @@ namespace Everyday
                 case GameState.Garage:
                     Instance.HallCanvas.SetActive(false);
                     Instance.GarageCanvas.SetActive(true);
+                    _audioManager.PauseBackgroundMusic();
+                    _audioManager.PlayGarageMusic();
                     break;
                 
                 //goes to hallway from all possible directions
                 case GameState.Hallway:
+                    if (Instance.GarageCanvas.activeInHierarchy)
+                    {
+                        _audioManager.StopGarageMusic();
+                        _audioManager.UnPauseBackgroundMusic();
+                    }
+
                     Instance.GarageCanvas.SetActive(false);
                     Instance.LivingRoomCanvas.SetActive(false);
                     Instance.BedroomCanvas.SetActive(false);
@@ -161,6 +192,9 @@ namespace Everyday
                 case GameState.NextDay:
                     _currentDay += 1;
                     _currentTask = (int)Task.Kaffee;
+                    _audioManager.PlayCoffeeTaskLine();
+                    _nothingCoffee = false;
+                    _finallySomeQuiet = false;
                     break;
 
                 //goes to good ending from "cycle"

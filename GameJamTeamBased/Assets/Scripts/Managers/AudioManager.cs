@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -9,8 +10,15 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource _menuMusic;
     [SerializeField] private AudioSource _backgroundMusicDayOne;
+    [SerializeField] private AudioSource _bathroomMusic;
+    [SerializeField] private AudioSource _garageMusic;
     [SerializeField] private AudioSource _correctTask;
     [SerializeField] private AudioSource _wrongTask;
+    [SerializeField] private AudioSource _coffeeNarratorLine;
+    [SerializeField] private AudioSource _nothingWithoutCoffee;
+    [SerializeField] private AudioSource _coffeeGrinder;
+    [SerializeField] private AudioSource _sinkSound;
+    [SerializeField] private AudioSource _finallySomeQuiet;
 
     private bool _menuMusicIsOn;
     //private bool _backgroundMusicDayOneIsOn;
@@ -71,6 +79,8 @@ public class AudioManager : MonoBehaviour
     {
         _backgroundMusicDayOne.Stop();
         _menuMusic.Stop();
+        _bathroomMusic.Stop();
+        _garageMusic.Stop();
         _backgroundMusicIsOn = false;
     }
 
@@ -84,6 +94,57 @@ public class AudioManager : MonoBehaviour
     {
         _backgroundMusicDayOne.UnPause();
         _backgroundMusicIsOn = true;
+    }
+
+    public void PlayCoffeeTaskLine()
+    {
+        _coffeeNarratorLine.Play();
+    }
+
+    public void PlayNothingWithoutCoffee()
+    {
+        _nothingWithoutCoffee.Play();
+    }
+
+    public void PlayCoffeeGrinderSound()
+    {
+        if (!_coffeeGrinder.isPlaying) { _coffeeGrinder.Play(); }
+    }
+
+    public void PlaySinkSound()
+    {
+        if (!_sinkSound.isPlaying) { _sinkSound.Play(); }
+    }
+
+    public void PlayFinallySomeQuiet()
+    {
+        _finallySomeQuiet.Play();
+    }
+
+    public void PlayBathroomMusic()
+    {
+        if (!_bathroomMusic.isPlaying)
+        {
+            _bathroomMusic.Play();
+        }
+    }
+
+    public void StopBathroomMusic()
+    {
+        _bathroomMusic.Stop();
+    }
+
+    public void PlayGarageMusic()
+    {
+        if (!_garageMusic.isPlaying)
+        {
+            _garageMusic.Play();
+        }
+    }
+
+    public void StopGarageMusic()
+    {
+        _garageMusic.Stop();
     }
     #endregion
 }
