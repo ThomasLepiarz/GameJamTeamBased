@@ -83,8 +83,6 @@ public class TaskManager : MonoBehaviour
     private void TaskOnClickThree()
     {
         _clickedTask = 3;
-        audioManager.PlayAudioSource(_workTaskFinished);
-        audioManager.PlayAudioSource(_workTaskFinishedPlayer);
         CheckTaskComplete();
     }
 

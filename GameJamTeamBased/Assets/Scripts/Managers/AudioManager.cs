@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _coffeeGrinder;
     [SerializeField] private AudioSource _sinkSound;
     [SerializeField] private AudioSource _finallySomeQuiet;
+    [SerializeField] private AudioSource _cycleSound;
 
     private bool _menuMusicIsOn;
     //private bool _backgroundMusicDayOneIsOn;
@@ -145,6 +146,14 @@ public class AudioManager : MonoBehaviour
     public void StopGarageMusic()
     {
         _garageMusic.Stop();
+    }
+
+    public void PlayCycleSound()
+    {
+       if(!_cycleSound.isPlaying)
+        {
+            _cycleSound.Play();
+        }
     }
     #endregion
 }
