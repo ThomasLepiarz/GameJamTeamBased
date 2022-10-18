@@ -21,7 +21,6 @@ namespace Everyday
 
         public static GameManager Instance;
         private static AudioManager _audioManager;
-        public LevelChanger levelChanger;
 
         public GameObject MenuCanvas;
         public GameObject CreditsCanvas;
@@ -33,6 +32,9 @@ namespace Everyday
         public GameObject GarageCanvas;
         public GameObject BadEndingCanvas;
         public GameObject GoodEndingCanvas;
+
+        //to animate room transitions
+        [SerializeField] private LevelChanger _levelChanger;
 
         //bools to handle whether sounds have played already
         private bool _nothingCoffee = false;
@@ -105,116 +107,57 @@ namespace Everyday
                 
                 //starts the player off in the bedroom
                 case GameState.NewGame:
-                    Instance.MenuCanvas.SetActive(false);
-                    Instance.BedroomCanvas.SetActive(true);
-
-                    //stops menu music (if on) and plays Day1 BG music
-                    _audioManager.PlayBackgroundMusicDayOne();
-                    _audioManager.PlayCoffeeTaskLine();
-
-                    //sets the first Task to Coffee
-                    _currentTask = (int)Task.Kaffee;
+                    StartCoroutine(nameof(NewGame));
                     break;
 
                 //sends the player to the bedroom, when coming from the hallway
                 case GameState.Bedroom:
-                    Instance.HallCanvas.SetActive(false);
-                    Instance.BedroomCanvas.SetActive(true);
+                    StartCoroutine(nameof(Bedroom));                    
                     break;
 
                 //sends the player to the bathroom
                 case GameState.Bathroom:
-                    Instance.BathroomCanvas.SetActive(true);
-                    Instance.LivingRoomCanvas.SetActive(false);
-                    _audioManager.PauseBackgroundMusic();
-                    _audioManager.PlayBathroomMusic();
-                    if (!_finallySomeQuiet)
-                    {
-                        _audioManager.PlayFinallySomeQuiet();
-                        _finallySomeQuiet = true;
-                    }
+                    StartCoroutine(nameof(Bathroom));
                     break;
                 
                 //goes to kitchen from either 
                 case GameState.Kitchen:
-                    if (!_audioManager.BackGroundMusicIsOn)
-                    {
-                        _audioManager.StopBathroomMusic();
-                        _audioManager.UnPauseBackgroundMusic();
-                    }
-                    Instance.LivingRoomCanvas.SetActive(false);
-                    Instance.KitchenCanvas.SetActive(true);
-                    Instance.BathroomCanvas.SetActive(false);
-
-                    if (!_nothingCoffee)
-                    {
-                        _audioManager.PlayNothingWithoutCoffee();
-                        _nothingCoffee = true;
-                    }
+                    StartCoroutine(nameof(Kitchen));
                     break;
 
                 //goes to living room from both directions
                 case GameState.LivingRoom:
-                    Instance.LivingRoomCanvas.SetActive(true);
-                    Instance.HallCanvas.SetActive(false);
-                    Instance.KitchenCanvas.SetActive(false);
+                    StartCoroutine(nameof(LivingRoom));
                     break;
                 
                 //goes to garage from hallway
                 case GameState.Garage:
-                    Instance.HallCanvas.SetActive(false);
-                    Instance.GarageCanvas.SetActive(true);
-                    _audioManager.PauseBackgroundMusic();
-                    _audioManager.PlayGarageMusic();
+                    StartCoroutine(nameof(Garage));
                     break;
                 
                 //goes to hallway from all possible directions
                 case GameState.Hallway:
-                    if (Instance.GarageCanvas.activeInHierarchy)
-                    {
-                        _audioManager.StopGarageMusic();
-                        _audioManager.UnPauseBackgroundMusic();
-                    }
-
-                    Instance.GarageCanvas.SetActive(false);
-                    Instance.LivingRoomCanvas.SetActive(false);
-                    Instance.BedroomCanvas.SetActive(false);
-                    Instance.HallCanvas.SetActive(true); 
+                    StartCoroutine(nameof(Hallway));                   
                     break;
 
                 //goes to bedending from "bed"
                 case GameState.BadEnding:
-                    Instance.BedroomCanvas.SetActive(false);
-                    Instance.BadEndingCanvas.SetActive(true);
+                    StartCoroutine(nameof(BadEnding));
                     break;
 
                 //handles the day changes
                 case GameState.NextDay:
-                    _currentDay += 1;
-                    _currentTask = (int)Task.Kaffee;
-                    _audioManager.PlayCoffeeTaskLine();
-                    _nothingCoffee = false;
-                    _finallySomeQuiet = false;
+                    StartCoroutine(nameof(NextDay));
                     break;
 
                 //goes to good ending from "cycle"
                 case GameState.GoodEnding:
-                    Instance.GarageCanvas.SetActive(false);
-                    Instance.GoodEndingCanvas.SetActive(true);
+                    StartCoroutine(nameof(GoodEnding));
                     break;
                 
                 //goes to snake from "Snake Button"
                 case GameState.Snake:
-                    Instance.MenuCanvas.SetActive(false);
-                    Instance.CreditsCanvas.SetActive(false);
-                    Instance.BedroomCanvas.SetActive(false);
-                    Instance.HallCanvas.SetActive(false);
-                    Instance.LivingRoomCanvas.SetActive(false);
-                    Instance.KitchenCanvas.SetActive(false);
-                    Instance.GarageCanvas.SetActive(false);
-                    Instance.GoodEndingCanvas.SetActive(false);
-                    Instance.BadEndingCanvas.SetActive(false);
-                    Instance.BathroomCanvas.SetActive(false);
+                    StartCoroutine(nameof(Snake));
                     break;
 
                 default:
@@ -323,6 +266,13 @@ namespace Everyday
             Instance.SwitchState(GameState.Starting);
         }
 
+        private IEnumerator WaitForFade()
+        {
+            Debug.Log("Started Coroutine at timestamp: " + Time.time);
+            yield return new WaitForSeconds(200);
+            Debug.Log("Finished Coroutine at timestamp: " + Time.time);
+        }
+
         private void Update()
         {
         
@@ -335,6 +285,148 @@ namespace Everyday
                 }
             }
         }
+
+        #region IEnumerators for Transitions
+
+        private IEnumerator NewGame()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.MenuCanvas.SetActive(false);
+            Instance.BedroomCanvas.SetActive(true);
+
+            //stops menu music (if on) and plays Day1 BG music
+            _audioManager.PlayBackgroundMusicDayOne();
+            _audioManager.PlayCoffeeTaskLine();
+
+            //sets the first Task to Coffee
+            _currentTask = (int)Task.Kaffee;
+        }
+
+        private IEnumerator Hallway()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            if (Instance.GarageCanvas.activeInHierarchy)
+            {
+                _audioManager.StopGarageMusic();
+                _audioManager.UnPauseBackgroundMusic();
+            }
+
+            Instance.GarageCanvas.SetActive(false);
+            Instance.LivingRoomCanvas.SetActive(false);
+            Instance.BedroomCanvas.SetActive(false);
+            Instance.HallCanvas.SetActive(true);
+        }
+
+        private IEnumerator BadEnding()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.BedroomCanvas.SetActive(false);
+            Instance.BadEndingCanvas.SetActive(true);
+        }
+
+        private IEnumerator NextDay()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            _currentDay += 1;
+            _currentTask = (int)Task.Kaffee;
+            _audioManager.PlayCoffeeTaskLine();
+            _nothingCoffee = false;
+            _finallySomeQuiet = false;
+
+        }
+
+        private IEnumerator GoodEnding()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.GarageCanvas.SetActive(false);
+            Instance.GoodEndingCanvas.SetActive(true);
+        }
+
+        private IEnumerator LivingRoom()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.LivingRoomCanvas.SetActive(true);
+            Instance.HallCanvas.SetActive(false);
+            Instance.KitchenCanvas.SetActive(false);
+        }
+
+        private IEnumerator Kitchen()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            if (!_audioManager.BackGroundMusicIsOn)
+            {
+                _audioManager.StopBathroomMusic();
+                _audioManager.UnPauseBackgroundMusic();
+            }
+            Instance.LivingRoomCanvas.SetActive(false);
+            Instance.KitchenCanvas.SetActive(true);
+            Instance.BathroomCanvas.SetActive(false);
+
+            if (!_nothingCoffee)
+            {
+                _audioManager.PlayNothingWithoutCoffee();
+                _nothingCoffee = true;
+            }
+        }
+
+        private IEnumerator Garage()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.HallCanvas.SetActive(false);
+            Instance.GarageCanvas.SetActive(true);
+            _audioManager.PauseBackgroundMusic();
+            _audioManager.PlayGarageMusic();
+        }
+
+        private IEnumerator Bathroom()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.BathroomCanvas.SetActive(true);
+            Instance.LivingRoomCanvas.SetActive(false);
+            _audioManager.PauseBackgroundMusic();
+            _audioManager.PlayBathroomMusic();
+            if (!_finallySomeQuiet)
+            {
+                _audioManager.PlayFinallySomeQuiet();
+                _finallySomeQuiet = true;
+            }
+        }
+
+        private IEnumerator Bedroom()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.HallCanvas.SetActive(false);
+            Instance.BedroomCanvas.SetActive(true);
+        }
+
+        private IEnumerator Snake()
+        {
+            _levelChanger.FadeOut();
+            yield return new WaitForSeconds(1);
+            Instance.MenuCanvas.SetActive(false);
+            Instance.CreditsCanvas.SetActive(false);
+            Instance.BedroomCanvas.SetActive(false);
+            Instance.HallCanvas.SetActive(false);
+            Instance.LivingRoomCanvas.SetActive(false);
+            Instance.KitchenCanvas.SetActive(false);
+            Instance.GarageCanvas.SetActive(false);
+            Instance.GoodEndingCanvas.SetActive(false);
+            Instance.BadEndingCanvas.SetActive(false);
+            Instance.BathroomCanvas.SetActive(false);
+        }
+
+
+        #endregion
 
         #endregion
     }

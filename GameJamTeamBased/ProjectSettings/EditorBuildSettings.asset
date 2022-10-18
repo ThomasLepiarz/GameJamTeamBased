@@ -8,31 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: ec2969515ae813a47b856f69ba85cbac
-  - enabled: 1
-    path: Assets/Scenes/BedRoom.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Kitchen.unity
-    guid: 0809e60920d0b43468665977a4e01799
-  - enabled: 1
-    path: Assets/Scenes/Hall.unity
-    guid: 9a1507499cb7c234d889e4851170cd88
-  - enabled: 1
-    path: Assets/Scenes/Garage.unity
-    guid: f5a60d6f69a333b4e95f01cedfab0345
-  - enabled: 1
-    path: Assets/Scenes/Livingroom.unity
-    guid: d102a8ba8a52c8c4ba239b9d0069d6a7
-  - enabled: 1
-    path: Assets/Scenes/Bathroom.unity
-    guid: 5a916ca4108035446b950daae184e7eb
-  - enabled: 1
-    path: Assets/Scenes/BadEnding.unity
-    guid: 3381d85534f299a43aa70122caae1385
-  - enabled: 1
-    path: Assets/Scenes/GoodEnding.unity
-    guid: c996c390434fd6841b33597a106d7083
-  - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: 8a649285af96fad4bb7cb231198c54f7
   m_configObjects: {}
